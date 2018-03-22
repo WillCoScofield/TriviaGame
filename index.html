@@ -1,0 +1,68 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TriviaGame</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="resetsheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+
+
+</head>
+
+<body>
+    <div>
+        <h1 id="title">Trivia Game</h1>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </div>
+
+    <div>
+        <!-- change to "Time Left:" on gameOn() -->
+        <!-- change to "That's Correct! Next question in: timeDisp" on rightAns() -->
+        <!-- change to "That's Incorrect! Next question in: timeDisp(decrement)" on wrongAns() -->
+        <h2 id="msg2User">Time Per Question:
+            <span id="timeDisp"> 30 Seconds</span>
+        </h2>
+    </div>
+
+    <div>
+        <!-- change to "Question Number:" on gameOn() -->
+        <h2 id="quesNumTitle">Number of Questions:
+            <!-- change to "1-5" on gameOn() -->
+            <span id="quesNum">5</span>
+        </h2>
+    </div>
+
+    <div>
+        <!-- hide on gameOn(); -->
+        <button type="button" class="btn btn-primary btn-lg start-button">Start</button>
+    </div>
+
+    <div>
+        <!-- show on gameOn() -->
+        <h2 class="question">Question:
+            <span id="quesText">"What year was the United States Constitution ratified?"</span>
+        </h2>
+
+        <button type="button" class="btn btn-primary btn-lg aBut">A:
+            <span id="answer1">x</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg bBut">B:
+            <span id="answer2">x</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg cBut">C:
+            <span id="answer3">x</span>
+        </button>
+        <button type="button" class="btn btn-primary btn-lg dBut">D:
+            <span id="answer4">x</span>
+        </button>
+    </div>
+
+    <script src="assets/javascript/app.js"></script>
+</body>
+
+</html>
