@@ -41,13 +41,14 @@ $(document).ready(function () {
 
     function start() {
 
-        $(".questionPane").append("<button style='width: 80%; type='button' class='btn btn-primary startBut'> Start </button>")
+        $("#ex").append("<button style='width: 80%; type='button' class='btn btn-primary startBut'> Start </button>")
 
         //when start button is clicked
         $(".startBut").on("click", function () {
             $(".start-button").hide();
             $(".questionPane").empty();
             $(".questionPane").append("<h2 class='clock'>Time Remaining: <span id= 'timer'>" + number + "</span>    </h2>");
+            beginTime();
             $(".clock").append("<h2 id='question'>" + arr[currentQuestion].question + "</h2>");
 
             for (var i = 0; i < arr[currentQuestion].answers.length; i++) {
@@ -55,7 +56,7 @@ $(document).ready(function () {
                 // console.log("Test");
             }
 
-            beginTime(); //allows the question timer to begin for each question
+            //allows the question timer to begin for each question
 
         })
     }
@@ -74,6 +75,7 @@ $(document).ready(function () {
     function beginTime() {
         //start time on startButton
         qTimer = setInterval(decrement, 1000);
+
 
     }
 
@@ -103,7 +105,6 @@ $(document).ready(function () {
 
     function timedOut() {
         number = 10;
-
         qTimer = clearInterval(qTimer);
         $(".questionPane").empty();
         $(".questionPane").text("You ran out of time! Here comes the next question.");
@@ -166,9 +167,11 @@ $(document).ready(function () {
     }
 
     function resultPane() {
-
+        
+        console.log(number);
+        clearInterval(qTimer, quesTimeOut);
+        clearTimeout(quesTimeOut, qTimer);
         $(".questionPane").empty();
-        //$(".questionPane").append("<h2 class='clock'>Time Remaining: <span id= 'timer'>" + number + "</span></h2>");
         $(".questionPane").append("<h2 id='results'> All done here's how you did!</h2>");
         var resultsDiv = $("<div class = 'resultsDiv'</div>")
         $("#results").append("<h3 id= 'results'> Correct Answers: " + numCorrect + "<br> Incorrect answers:" + numIncorr + "<br> Unanswered: " + unAnswered + "</h3>")
