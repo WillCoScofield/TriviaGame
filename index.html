@@ -4,65 +4,48 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TriviaGame</title>
+    <title>Re-Org</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="resetsheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
         crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src = "assets/javascript/app.js"></script>
 </head>
 
 <body>
-    <div>
-        <h1 id="title">Trivia Game</h1>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <div class="container">
+        <div align=center class="container title">
+            <div class="page-header">
+                <h1>TRIVIA</h1>
+                <h2></h2>
+            </div>
+        </div>
+
+        <div align=center class="questionPane">
+            <h2>Total Questions: 5</h2>
+            <h2>Time for Each: 30 Seconds</h2>
+        </div>
+
+        <div align=center class="container start-button"></div>
+
+        <div align=center class="rightPane">
+
+        </div>
+
+        <div align=center class="wrongPane">
+
+        </div>
+
+        <div align=center class="timeOutPane">
+
+        </div>
+
+        <div align=center class="resultPane">
+            <!-- include restart function key-->
+        </div>
     </div>
-
-    <div>
-        <!-- change to "Time Left:" on gameOn() -->
-        <!-- change to "That's Correct! Next question in: timeDisp" on rightAns() -->
-        <!-- change to "That's Incorrect! Next question in: timeDisp(decrement)" on wrongAns() -->
-        <h2 id="msg2User">Time Per Question:
-            <span id="timeDisp"> 30 Seconds</span>
-        </h2>
-    </div>
-
-    <div>
-        <!-- change to "Question Number:" on gameOn() -->
-        <h2 id="quesNumTitle">Number of Questions:
-            <!-- change to "1-5" on gameOn() -->
-            <span id="quesNum">5</span>
-        </h2>
-    </div>
-
-    <div>
-        <!-- hide on gameOn(); -->
-        <button type="button" class="btn btn-primary btn-lg start-button">Start</button>
-    </div>
-
-    <div class = "questionPanel">
-        <!-- show on gameOn() -->
-        <h2 class="question">Question:
-            <span id="quesText">""</span>
-        </h2>
-
-        <button type="button" class="btn btn-primary btn-lg aBut">A:
-            <span id="answer1">x</span>
-        </button>
-        <button type="button" class="btn btn-primary btn-lg bBut">B:
-            <span id="answer2">x</span>
-        </button>
-        <button type="button" class="btn btn-primary btn-lg cBut">C:
-            <span id="answer3">x</span>
-        </button>
-        <button type="button" class="btn btn-primary btn-lg dBut">D:
-            <span id="answer4">x</span>
-        </button>
-    </div>
-
-    <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>
