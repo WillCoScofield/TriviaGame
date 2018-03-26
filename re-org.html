@@ -1,0 +1,202 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Re-Org</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="resetsheet" href="assets/css/reset.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div align=center class="container title">
+            <div class="page-header">
+                <h1>TRIVIA</h1>
+                <h2>JEOPARDY FORMAT</h2>
+            </div>
+        </div>
+
+        <div align=center class="questionPane">
+            <h2>Total Questions: 5</h2>
+            <h2>Time for Each: 30 Seconds</h2>
+        </div>
+
+        <div align=center class="container start-button"></div>
+
+        <div align=center class="rightPane">
+
+        </div>
+
+        <div align=center class="wrongPane">
+
+        </div>
+
+        <div align=center class="timeOutPane">
+
+        </div>
+
+        <div align=center class="resultPane">
+            <!-- include restart function key-->
+        </div>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            var arr = [
+                {
+                    question: 'Question: What is both a place people live and a part of a sweatshirt?',
+                    answers: ["The Hat", "The Sleeve", "The Pocket", "The Hood"],
+                    correctAnswer: "The Hood"
+                },
+                {
+                    question: "Question: What is Jacob's last name?",
+                    answers: ["Scofield", "Lamont", "Zuckerberg", "Dorselfin"],
+                    correctAnswer: "Lamont"
+                },
+                {
+                    question: "Question: What actor/singer gifted a dog to Marilyn Monroe named Mafia?",
+                    answers: ["Nickelback", "Dean Martin", "Frank Sinatra", "Alex Trebek"],
+                    correctAnswer: "Frank Sinatra"
+                },
+            ];
+
+
+            var questionArray = [];
+            var currentQuestion = arr.length - 1;
+            var quesTimeOut;
+            var countDown;
+            var intervalId;
+            var qTimer;
+            var number = 10;
+
+            // var triviaObj = {
+            //     object1={
+            //         questions: ["1. What is both a place that people live, and a part of a sweatshirt?"],
+            //         answers: [{ id: "A", text: "The Hood?" }, { id: "B", text: "The Sleeve?" }, { id: "C", text: "The Pocket?" }, { id: "D", text: "The Glove?" }],
+            //         rightAns: [{ id: "num1", text: "A" }, { id: "num2", text: "D" }, { id: "num3", text: "B" }, { id: "num4", text: "A" }],
+            //         userAns: event,
+            //         sounds: [{}, {}, {}, {}],
+
+            //     }
+
+
+
+            //"2. What is Jacob's last name?", "3. What city is this?", "What singer/actor gave Marilyn Monroe a white poodle named Mafia?"
+
+            // var question1 = "A place that people live, also a part of a sweatshirt?";
+            // var question2 = "What singer/actor gave Marilyn Monroe a white poodle named Mafia?"
+            // var question3 = "What is my name?"
+
+            $(".start-button").append("<button style='width: 80%; type='button' class='btn btn-primary startBut'> Start </button>")
+
+            //when start button is clicked
+
+            $(".startBut").on("click", function () {
+                $(".start-button").hide();
+                $(".questionPane").empty();
+                $(".questionPane").append("<h2 class='clock'>Time Remaining: <span id= 'timer'>" + number + "</span>    </h2>");
+                $(".clock").append("<h2 id='question'>" + arr[currentQuestion].question + "</h2>");
+
+                for (var i = 0; i < arr[currentQuestion].answers.length; i++) {
+                    $("#question").append("<br><button data-AnsID=" + arr[currentQuestion].answers[i] + " type='button' class= 'btn btn-primary btn-lg ansDiv'><h3 class='ansOpt'>" + arr[currentQuestion].answers[i] + "</h3></button>");
+                    // console.log("Test");
+                }
+
+                //beginTime(); //allows the question timer to begin for each question
+
+            })
+
+            //allow user to click their answer and obtain user input
+            $("body").on("click", '.ansDiv', function (event) {
+                var test = $(this);
+                console.log("Test: ", test);
+                userAns = event;
+                //if corrAns run corrAns() else incorrAns()
+                corrAnsFunc(event);
+
+            });
+
+
+            function beginTime() {
+                //start time on startButton
+                qTimer = setInterval(decrement, 1000);
+
+            }
+
+            function corrAnsFunc() {
+                if (userAns == this.correctAnswer) {
+                    corrAns();
+                }
+                else {
+                    incorrAns();
+                }
+            }
+
+            function decrement() {
+                number--;
+                $("#timer").text(number);
+                if (number === 0) {
+                    timedOut();
+                }
+                console.log(number);
+                console.log("decrement");
+
+            }
+
+            function timedOut() {
+                qTimer = clearInterval(qTimer);
+                $(".questionPane").empty();
+                $(".questionPane").text("You ran out of time!");
+
+            }
+
+            function corrAns() {
+                qTimer = clearInterval(qTimer);
+                $(".questionPane").empty();
+                $(".questionPane").text("That's correct.");
+                //set time for panel (4 seconds) and then run next question
+                quesTimeOut = setTimeout(function () {
+                    alert("Should go to next Question");
+                }, 3000);
+                currentQuestion--;
+                nextQuestion();
+
+            }
+
+
+            function incorrAns() {
+                qTimer = clearInterval(qTimer);
+                $(".questionPane").empty();
+                $(".questionPane").text("That's incorrect.");
+                //set time for panel (4 seconds) and then run next question
+                quesTimeOut = setTimeout(function () {
+                    alert("Should go to next Question now ");
+                }, 3000);
+                currentQuestion--;
+                //nextQuestion();
+            }
+
+            function nextQuestion() {
+                qTimer = clearInterval(qTimer);
+                $(".questionPane").empty();
+                $(".questionPane").text("corrAnsFunction is being skipped");
+
+
+            }
+
+
+
+        })
+
+    </script>
+</body>
+
+</html>

@@ -24,14 +24,14 @@ var answer2 = document.getElementById("answer2");
 var answer3 = document.getElementById("answer3");
 var answer4 = document.getElementById("answer4"); 
 
-var corrAns, incorrAns, intervalId, gameState, questionNum, countDown, nextQuestion;
+var corrAns, incorrAns, intervalId, gameState, questionNum, countDown, nextQuestion, numCorr, numIncorr;
 var questArr = [];
 
 
 
-// reset();
 
 
+reset();
 
 var game = {
     question: "",
@@ -41,11 +41,9 @@ var game = {
     gameState: "",
     
     reset: function () {
-        game.gameState = "preStart";
-        $("#msg2User").text("Time Per Question:");
-        $("#timeDisp").text("30 Seconds");
-        $("#")
-       
+        game.gameState = "reset";
+        $(".questionPanel").hide();
+
 
     },
 
@@ -53,14 +51,14 @@ var game = {
         game.gameState = "on";
         $("#start-button").hide();
         $("#msg2User").text("Time Remaining: ")
-        //count down fucntion begins?
+        //count down function until change slide?
         $("#timeDisp").text(countDown);
         $("#quesNumTitle").text("Question Number: ");
         $("#quesNum").text(questionNum);
         $("#quesText").text(nextQuestion);
        
 
-        //if right answer run rightAns, if wrong ans run wrongAns, if timedOut run timedOut and go to next question, if final answer
+        //if right answer run rightAns...next ques, if wrong ans run wrongAns... next ques, if timedOut run timedOut... next question, if final answer run results and provide resetKey to go again
 
     },
 
@@ -70,19 +68,28 @@ var game = {
 
     rightAns: function () {
         game.gameState = "corrAnswer";
+        //hide everything except
+        $("#msg2User").text("Correct!");
     },
 
     wrongAns: function () {
         game.gameState = "incorrAnswer";
+         //hide everything except
+        $("#msg2User").text("Incorrect!");
 
     },
 
     timedOut: function () {
         game.gameState = "timeElapsed";
+        //hide everything except
+        $("#msg2User").text("You ran out of time!!");
     },
 
     results: function (){
-        game.gameState = "gameOver"
+        game.gameState = "gameOver";
+        //hide everything except
+        $("#msg2User").text("You got: " + numCorr + "Correct! You got: " +numIncorr);
+        $("#")
 
     }
 }
