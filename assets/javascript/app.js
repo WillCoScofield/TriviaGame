@@ -174,7 +174,7 @@ $(document).ready(function () {
         $(".questionPane").empty();
         $(".questionPane").append("<h2 id='results'> All done here's how you did!</h2>");
         var resultsDiv = $("<div class = 'resultsDiv'</div>")
-        $("#results").append("<h3 id= 'results'> Correct Answers: " + numCorrect + "<br> Incorrect answers:" + numIncorr + "<br> Unanswered: " + unAnswered + "</h3>")
+        $("#results").append("<h3 id= 'results'> Correct Answers: " + numCorrect + "<br> Incorrect answers: " + numIncorr + "<br> Unanswered: " + unAnswered + "</h3>")
         $("#results").append("<h2 id= 'restart'><button type='button' class='btn btn-danger restart-but'> Restart? </button></h2>")
 
     }
